@@ -74,6 +74,13 @@ h1 {
     font-weight: normal;
 }
 
+.stat-dates {
+    font-size: 0.9em;
+    color: #888;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
 .loading {
     text-align: center;
     color: white;
@@ -207,4 +214,114 @@ h1 {
 
 .country-name {
     color: #333;
+}
+
+/* Flights Section */
+.flights-section {
+    margin-top: 40px;
+}
+
+.flights-table-container {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    overflow-x: auto;
+}
+
+.flights-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1em;
+    border: 1px solid #ddd;
+}
+
+.flights-table thead {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.flights-table th {
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9em;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.flights-table th:first-child {
+    width: 60px;
+    text-align: center;
+}
+
+.flights-table th:last-child {
+    text-align: right;
+}
+
+.flights-table tbody tr {
+    border-bottom: 1px solid #ddd;
+    transition: background 0.2s ease;
+}
+
+.flights-table tbody tr:hover {
+    background: #f8f9fa;
+}
+
+.flights-table tbody tr:last-child {
+    border-bottom: 1px solid #ddd;
+}
+
+.flights-table td {
+    padding: 15px;
+    color: #333;
+    border-right: 1px solid #ddd;
+}
+
+.flights-table td:last-child {
+    border-right: none;
+}
+
+.flights-table td.flight-order {
+    text-align: center;
+    color: #667eea;
+    font-weight: 600;
+    width: 60px;
+}
+
+.flights-table td.flight-from,
+.flights-table td.flight-to {
+    font-weight: 500;
+}
+
+.flights-table td.flight-price {
+    text-align: right;
+    font-weight: 600;
+    color: #667eea;
+}
+
+.flights-table tfoot {
+    background: #f8f9fa;
+    border-top: 2px solid #667eea;
+}
+
+.flights-table tfoot tr.flights-summary {
+    font-size: 1.1em;
+}
+
+.flights-table tfoot td {
+    padding: 15px;
+    font-weight: 700;
+    border-right: 1px solid #ddd;
+}
+
+.flights-table tfoot td:last-child {
+    border-right: none;
+}
+
+.flights-table tfoot td.flight-price-total {
+    text-align: right;
+    color: #667eea;
+    font-size: 1.2em;
 }

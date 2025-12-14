@@ -70,6 +70,15 @@ async function loadDashboard() {
             return new Date(parts[2], parts[1] - 1, parts[0]);
         }
 
+        // Helper function to format date to DD.MM.YYYY format
+        function formatDate(date) {
+            if (!date) return '';
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const year = date.getFullYear();
+            return `${day}.${month}.${year}`;
+        }
+
         // Skip header row
         const data = rows.slice(1).map(row => {
             return {
@@ -77,7 +86,8 @@ async function loadDashboard() {
                 platform: row[3]?.trim().toLowerCase(),
                 nights: parseInt(row[6]?.trim()) || 0,
                 checkIn: row[4]?.trim(),
-                checkOut: row[5]?.trim()
+                checkOut: row[5]?.trim(),
+                accommodation: row[8]?.trim()
             };
         });
 
@@ -100,7 +110,11 @@ async function loadDashboard() {
             ? Math.ceil((maxCheckOut - minCheckIn) / (1000 * 60 * 60 * 24)) + 1
             : 0;
         const uniqueCountries = new Set(data.filter(row => row.country).map(row => row.country));
-        const workawayProjects = data.filter(row => row.platform === 'workaway').length;
+        const workawayProjects = new Set(
+            data
+                .filter(row => row.platform === 'workaway' && row.accommodation)
+                .map(row => row.accommodation)
+        ).size;
 
         console.log('Statistics calculated:', { totalDays, countries: uniqueCountries.size, workawayProjects });
 
@@ -114,6 +128,7 @@ async function loadDashboard() {
                 <div class="stat-card">
                     <div class="stat-label">Days on the Road</div>
                     <div class="stat-value">${totalDays}<span class="stat-unit"> days</span></div>
+                    ${minCheckIn && maxCheckOut ? `<div class="stat-dates">${formatDate(minCheckIn)} - ${formatDate(maxCheckOut)}</div>` : ''}
                 </div>
                 <div class="stat-card clickable" id="countries-card" onclick="showCountriesList(window.visitedCountries)">
                     <div class="stat-label">Countries Visited</div>
